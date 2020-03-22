@@ -3,18 +3,18 @@ services:
   gekko:
     build: ./
     volumes:
-      - ./volumes/gekko/history:/usr/src/app/history
+      - /root/history:/usr/src/app/history
       - ./config.js:/usr/src/app/config.js
     links:
       - redis
 #      - postgresql
     environment:
-     - HOST
-     - PORT
-     - USE_SSL
-     - MEMORYNODE
+     - HOST 192.168.1.10
+     - PORT 3005
+     - USE_SSL 0
+     - MEMORYNODE 4096
     ports: # you can comment this out when using the nginx frontend
-      - "${PORT}:${PORT}"
+      - "3005:3005"
 ## optionally set nginx vars if you wish to frontend it with nginx
 #    environment:
 #     - VIRTUAL_HOST=gekko
