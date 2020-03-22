@@ -1,7 +1,7 @@
 FROM node:10
 
-ENV HOST localhost
-ENV PORT 3000
+ENV HOST 192.168.1.10
+ENV PORT 3005
 ENV MEMORYNODE 2048
 ENV USE_SSL 0
 
@@ -24,7 +24,7 @@ RUN npm install -g --production node-gyp && \
 # Install Gekko dependencies
 COPY package.json .
 RUN npm install --production && \
-    npm install --production redis talib tulind pg convnetjs mathjs redis talib tulind pg convnetjs mathjs zero-fill stats-lite numbro cluster lodash && \
+    npm install --production redis talib tulind pg gauss convnetjs mathjs redis talib tulind pg convnetjs mathjs zero-fill stats-lite numbro cluster lodash && \
     npm cache clean --force
 
 # Install Gekko Broker dependencies
