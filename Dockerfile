@@ -15,7 +15,7 @@ RUN rm -rf /var/lib/apt/lists/*
 
 # Create app directory
 RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app 
+WORKDIR /usr/src/app
 
 # Install GYP dependencies globally, will be used to code build other dependencies
 RUN npm install -g --production node-gyp && \
@@ -24,7 +24,7 @@ RUN npm install -g --production node-gyp && \
 # Install Gekko dependencies
 COPY package.json .
 RUN npm install --production && \
-    npm install --production redis talib tulind pg convnetjs mathjs && \
+    npm install --production redis talib tulind pg convnetjs mathjs redis talib tulind pg convnetjs mathjs zero-fill stats-lite numbro cluster lodash && \
     npm cache clean --force
 
 # Install Gekko Broker dependencies
@@ -51,7 +51,7 @@ WORKDIR ./Gekko-Strategies
 WORKDIR ../
 RUN rm -R Gekko-Strategies
 
-# add Neuralnet zchro 
+# add Neuralnet zchro
 RUN git clone https://github.com/zschro/gekko-neuralnet.git
 WORKDIR ./gekko-neuralnet
     RUN cp ../install.sh . && \
@@ -70,7 +70,7 @@ RUN rm -R ./Gekko-BacktestTool
 # Install Genetic Algorithm for solving optimization of trading strategies using Gekko
 RUN git clone https://github.com/gekkowarez/gekkoga.git
 WORKDIR ./gekkoga
-    RUN npm install 
+    RUN npm install
 WORKDIR ../
 
 # Install Gekko Automated Backtest
