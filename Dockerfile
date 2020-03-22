@@ -76,6 +76,14 @@ WORKDIR ../
 # Install Gekko Automated Backtest
 RUN git clone https://github.com/tommiehansen/gab.git
 
+# Install Gekko webUI
+RUN git clone https://github.com/abvlm/gekko-quasar-ui.git
+RUN npm install -g @quasar/cli
+WORKDIR ./gekko/gekko-quasar-ui
+RUN npm install && quasar build
+RUN cp dist/spa/*.* ../web/vue/ -R
+
+WORKDIR ../
 
 EXPOSE 3000
 RUN chmod +x /usr/src/app/docker-entrypoint.sh
